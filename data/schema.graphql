@@ -1,0 +1,46 @@
+type Product {
+  _id: ID!
+  name: String!
+  imageURL: String!
+  link: String!
+  stars: Float
+  reviews: Int
+  cathegory: Cathegory!
+  store: Store!
+  country: Country!
+  Time: String
+  Rank: Int!
+  Price: Float
+  Price_max: Float
+}
+
+type Store {
+  _id: ID!
+  country: Country
+  name: String!
+}
+
+type Cathegory {
+  _id: ID!
+  name: String!
+}
+
+type Country {
+  _id: ID!
+  country: String!
+}
+
+type Query {
+  "Devuelve todos los productos"
+  getProducts(countryID: ID, storeID: ID, cathegoryID: ID): [Product]
+  "Devuelve un producto"
+  getProduct(id: ID!): Product
+  "Devuelve todas las categorias"
+  getCathegorys: [Cathegory]
+  "Devuelve una Cathegoria"
+  getCathegory(id: ID!): Cathegory
+  "Devuelve todas las tiendas"
+  getStores: [Store]
+  "Devuelve una tienda"
+  getStore(id: ID!): Store
+}
