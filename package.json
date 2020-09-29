@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --detectOpenHandles",
     "format": "prettier --write '{*.js,src/**/*.js}'",
     "lint": "eslint src/ --fix"
   },
@@ -16,7 +16,9 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
     "husky": "^4.3.0",
-    "prettier": "^2.1.1"
+    "jest": "^26.4.2",
+    "prettier": "^2.1.1",
+    "supertest": "^5.0.0"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -26,5 +28,13 @@
     "graphql": "^15.3.0",
     "graphql-tools": "^6.2.3",
     "mongodb": "^3.6.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ]
   }
 }

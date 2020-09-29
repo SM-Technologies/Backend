@@ -5,9 +5,7 @@ type Product {
   link: String!
   stars: Float
   reviews: Int
-  cathegory: Cathegory!
   store: Store!
-  country: Country!
   Time: String
   Rank: Int!
   Price: Float
@@ -16,18 +14,7 @@ type Product {
 
 type Store {
   _id: ID!
-  country: Country
   name: String!
-}
-
-type Cathegory {
-  _id: ID!
-  name: String!
-}
-
-type Country {
-  _id: ID!
-  country: String!
 }
 
 type Query {
@@ -35,12 +22,10 @@ type Query {
   getProducts(countryID: ID, storeID: ID, cathegoryID: ID): [Product]
   "Devuelve un producto"
   getProduct(id: ID!): Product
-  "Devuelve todas las categorias"
-  getCathegorys: [Cathegory]
-  "Devuelve una Cathegoria"
-  getCathegory(id: ID!): Cathegory
   "Devuelve todas las tiendas"
   getStores: [Store]
   "Devuelve una tienda"
   getStore(id: ID!): Store
+  "Busqueda del precio mas economico"
+  searchItems(keyword: String!): [Product]
 }

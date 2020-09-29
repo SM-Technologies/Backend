@@ -5,28 +5,18 @@ const connectDB = require('./db');
 const errorHandler = require('./errorHandler');
 
 module.exports = {
-  getProducts: async (root, { countryID, storeID, cathegoryID }) => {
+  getProducts: async (root, {storeID}) => {
     let db;
     let products = [];
-    let country; let store; let cathegory;
+    let store;
 
-    if (countryID) {
-      countryID = ObjectID(countryID);
-      country = { country: countryID };
-    }
-    if (cathegoryID) {
-      cathegoryID = ObjectID(cathegoryID);
-      cathegory = { cathegory: cathegoryID };
-    }
     if (storeID) {
       storeID = ObjectID(storeID);
       store = { store: storeID };
     }
 
     const query = {
-      ...country,
       ...store,
-      ...cathegory,
     };
 
     try {
@@ -70,28 +60,19 @@ module.exports = {
     }
     return Store;
   },
-  getCathegorys: async () => {
-    let db;
-    let Cathegorys = [];
+  searchItems: async (root, { keyword }) => {
+    let db
+    let products
+    let items
     try {
-      db = await connectDB();
-      Cathegorys = await db.collection('Cathegorys').find().toArray();
+      db = await connectDB()
+      products = await db.collection('Products').find(
+        { $text: { $search: keyword }}
+      ).toArray()
+      items = [ ...products ]
     } catch (e) {
-      errorHandler(e);
+      errorHandler(e)
     }
-    return Cathegorys;
-  },
-  getCathegory: async (root, { id }) => {
-    let db;
-    let Cathegory;
-    try {
-      db = await connectDB();
-      Cathegory = await db
-        .collection('Cathegorys')
-        .findOne({ _id: ObjectID(id) });
-    } catch (e) {
-      errorHandler(e);
-    }
-    return Cathegory;
-  },
+    return items
+  }
 };

@@ -16,34 +16,6 @@ module.exports = {
       }
 
       return Data;
-    },
-    cathegory: async ({ cathegory }) => {
-      let db;
-      let Data;
-      try {
-        db = await connectDB();
-        Data = await db
-          .collection('Cathegorys')
-          .findOne({ _id: ObjectID(cathegory) });
-      } catch (e) {
-        errorHandler(e);
-      }
-
-      return Data;
-    },
-    country: async ({ country }) => {
-      let db;
-      let Data;
-      try {
-        db = await connectDB();
-        Data = await db
-          .collection('Countrys')
-          .findOne({ _id: ObjectID(country) });
-      } catch (e) {
-        errorHandler(e);
-      }
-
-      return Data;
-    },
+    }
   },
 };
