@@ -4,8 +4,12 @@ const connectDB = require('./db');
 
 const errorHandler = require('./errorHandler');
 
+// You should use a file per each resolver
+
+
 module.exports = {
   getProducts: async (root, {storeID}) => {
+    // You should use const
     let db;
     let products = [];
     let store;
@@ -20,6 +24,7 @@ module.exports = {
     };
 
     try {
+      // You should avoid connect to DB per each request
       db = await connectDB();
       products = await db.collection('Products').find(query).toArray();
     } catch (e) {
@@ -69,6 +74,7 @@ module.exports = {
       products = await db.collection('Products').find(
         { $text: { $search: keyword }}
       ).toArray()
+      // Why don't return products?
       items = [ ...products ]
     } catch (e) {
       errorHandler(e)
