@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node api/index.js",
     "test": "jest --detectOpenHandles",
     "format": "prettier --write '{*.js,src/**/*.js}'",
     "lint": "eslint src/ --fix"
