@@ -4,7 +4,7 @@ dotenv.config();
 
 module.exports = {
   api: {
-    port: process.env.API_PORT,
+    port: process.env.API_PORT || process.env.PORT,
   },
   mongo: {
     user: process.env.MONGO_USER,

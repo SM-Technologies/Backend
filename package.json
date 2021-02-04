@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node api/index.js",
     "test": "jest --detectOpenHandles",
     "format": "prettier --write '{*.js,src/**/*.js}'",
     "lint": "eslint src/ --fix"
+  },
+  "engines": {
+    "node": "14.x"
   },
   "keywords": [],
   "author": "",
@@ -27,7 +31,8 @@
     "express-graphql": "^0.11.0",
     "graphql": "^15.3.0",
     "graphql-tools": "^6.2.3",
-    "mongodb": "^3.6.2"
+    "mongodb": "^3.6.2",
+    "node-cmd": "^3.0.0"
   },
   "jest": {
     "testEnvironment": "node",
